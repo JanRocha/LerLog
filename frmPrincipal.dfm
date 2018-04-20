@@ -1,0 +1,75 @@
+object Form3: TForm3
+  Left = 0
+  Top = 0
+  Caption = 'Form3'
+  ClientHeight = 301
+  ClientWidth = 848
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  DesignSize = (
+    848
+    301)
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 8
+    Top = 280
+    Width = 81
+    Height = 13
+    Anchors = [akRight, akBottom]
+    Caption = 'Caminho do TXT:'
+  end
+  object Memo1: TMemo
+    Left = 0
+    Top = 0
+    Width = 840
+    Height = 259
+    Anchors = [akLeft, akTop, akRight, akBottom]
+    Lines.Strings = (
+      'Memo1')
+    ScrollBars = ssBoth
+    TabOrder = 0
+  end
+  object Edit1: TEdit
+    Left = 138
+    Top = 275
+    Width = 565
+    Height = 21
+    Anchors = [akRight, akBottom]
+    TabOrder = 1
+  end
+  object Button2: TButton
+    Left = 765
+    Top = 271
+    Width = 75
+    Height = 27
+    Anchors = [akRight, akBottom]
+    Caption = 'Processar'
+    TabOrder = 2
+    OnClick = Button2Click
+    ExplicitTop = 269
+  end
+  object Button1: TButton
+    Left = 722
+    Top = 271
+    Width = 32
+    Height = 27
+    Anchors = [akRight, akBottom]
+    Caption = '...'
+    TabOrder = 3
+    OnClick = Button1Click
+  end
+  object OpenDialog1: TOpenDialog
+    Left = 312
+    Top = 112
+  end
+  object OpenTextFileDialog1: TOpenTextFileDialog
+    Left = 288
+    Top = 184
+  end
+end

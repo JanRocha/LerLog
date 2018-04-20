@@ -1,0 +1,10 @@
+Caixa
+Inc
+
+{
+  "CODIGO":1,
+  "DESCRICAO_AUX":"BAR",
+  "QUANTIDADE":1,
+  "VENDEDOR":"19-IVAN KENNEDY",
+  "LANCAMENTO":"NORMAL"
+}

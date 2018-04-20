@@ -1,0 +1,259 @@
+unit frmPrincipal;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, ExtDlgs, Generics.Collections,uLkJSON;
+
+type
+  TLogMes = class(TObject)
+  private
+    FTipoLancamento: string;
+    FOrigem: string;
+    FCodigo: int64;
+    FDescricao_Aux: string;
+    FQuantidade: int64;
+    FVendedor: string;
+    FLancamento: string;
+    FPRN: string;
+    FConta: string;
+    FNomeArquivo: String;
+    FValor: string;
+    FTipo: string;
+    FAutorizador: string;
+    FMotivo: string;
+    FTem_Spool: string;
+    FAgrupamento: string;
+    FMesa_Origem: string;
+  published
+    property NomeArquivo :String read FNomeArquivo write FNomeArquivo;
+    property Origem : string Read FOrigem write Forigem;
+    property TipoLancamento: string read FTipoLancamento write FTipoLancamento;
+    property Codigo :int64 read FCodigo write FCodigo;
+    property Descricao_Aux: string read FDescricao_Aux write FDescricao_Aux;
+    property Quantidade : int64 read FQuantidade write FQuantidade;
+    property Vendedor: string read FVendedor write FVendedor;
+    property Lancamento : string read FLancamento write FLancamento;
+    property Tipo : string read FTipo write FTipo;
+    property Valor: string read FValor write FValor;
+    property Autorizador :string read  FAutorizador write FAutorizador;
+    property Tem_Spool : string read FTem_Spool write FTem_Spool;
+    property Agrupamento :string read FAgrupamento write FAgrupamento;
+    property Mesa_Origem : string read FMesa_Origem write FMesa_Origem;
+    property Motivo :string read FMotivo write FMotivo;
+    property Conta: string read FConta write FConta;
+    property PRN: string Read  FPRN write FPRN;
+  end;
+
+
+  TForm3 = class(TForm)
+    Memo1: TMemo;
+    Label1: TLabel;
+    Edit1: TEdit;
+    Button2: TButton;
+    Button1: TButton;
+    OpenDialog1: TOpenDialog;
+    OpenTextFileDialog1: TOpenTextFileDialog;
+    procedure Button2Click(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    function verificaOrigem(linha:String): Boolean;
+  private
+  path :string;
+  public
+    { Public declarations }
+  end;
+
+var
+  Form3: TForm3;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm3.Button1Click(Sender: TObject);
+begin
+   with TFileOpenDialog.Create(nil) do
+    try
+      Title := 'Selecione Raiz';
+      Options := [fdoPickFolders, fdoPathMustExist, fdoForceFileSystem];
+      if Execute then
+      Edit1.Text:= FileName+'\*.txt';
+      path:= FileName;
+    finally
+      Free;
+    end
+end;
+
+procedure TForm3.Button2Click(Sender: TObject);
+var
+  SR,SRCount: TSearchRec;
+  I,j,IArq,TotalXML: integer;
+  arq: TextFile;
+  linha:string;
+  lst: TList;
+  txt:TLogMes;
+  json: string;
+  jsTag:Boolean;
+  js   : TlkJSONobject;
+begin
+  jsTag:= false;
+  lst:= TList.create;
+
+
+  I := FindFirst(Edit1.Text, faAnyFile, SR);
+  IArq := FindFirst(Edit1.Text, faAnyFile, SRCount);
+  while IArq = 0 do
+  begin
+     TotalXML := TotalXML +1;
+     IArq := FindNext(SRCount);
+  end;
+
+  while I = 0 do
+  begin
+     Memo1.Lines.Add(SR.Name);
+     AssignFile(arq,path +'\'+ SR.Name);
+     txt:= TLogMes.Create;
+     json:='';
+     try        
+       Reset(arq);
+       while (not eof(arq)) do
+       begin
+          readln(arq, linha); // [ 6 ] Lê uma linha do arquivo
+          txt.NomeArquivo:= SR.Name;
+          if (linha ='Caixa') then
+            txt.Origem:= linha;
+          if verificaOrigem(linha) then
+             txt.TipoLancamento:= linha;
+          if txt.Origem ='PNRPed' then
+          begin
+            txt.PRN:= txt.PRN + linha;
+            exit;
+          end;
+          if txt.Origem = 'PRNCta' then
+          begin
+           txt.Conta:= txt.Conta + linha;
+           exit;
+          end;
+          if  jsTag= false then
+          begin
+            if linha = '{' then
+            begin
+              jsTag:= True;
+              json:= '{';
+            end;
+          end
+          else
+          begin
+            json:= json + linha;
+            if linha = '}' then
+            begin
+                jsTag:= false;
+                js:=  TlkJSON.ParseText(json) as TlkJSONobject;
+                if txt.TipoLancamento='Inc' then
+                begin
+                  txt.Codigo:=  js['CODIGO'].Value;
+                  txt.Descricao_Aux:= js['DESCRICAO_AUX'].Value;
+                  txt.Quantidade:=js['QUANTIDADE'].Value;
+                  txt.Vendedor:= js['VENDEDOR'].Value;
+                  TXT.Lancamento:= js['LANCAMENTO'].Value;
+                end;
+
+                if txt.TipoLancamento='Desc' then
+                begin
+                  txt.Codigo:=  js['CODIGO'].Value;
+                  txt.Descricao_Aux:= js['DESCRICAO_AUX'].Value;
+                  txt.Quantidade:=js['QUANTIDADE'].Value;
+                  txt.Tipo:=js['TIPO'].Value;
+                  if txt.Tipo ='PERCENTUAL' then
+                    txt.Valor:= js['PERCENTUAL'].Value
+                  else
+                  begin
+                    txt.Valor:=js['VALOR'].Value;
+                    txt.Motivo:=js['MOTIVO'].Value;
+                  end;
+                  txt.Autorizador:= js['AUTORIZADOR'].Value;
+                end;
+
+                if txt.TipoLancamento='Desb' then
+                begin
+                  txt.Autorizador:= js['AUTORIZADOR'].Value;
+                  txt.Tem_Spool:= js['TEM_SPOOL'].Value;
+                  txt.Agrupamento:= js['AGRUPAMENTO_COM_SPOOL'].Value;
+                end;
+
+                if txt.TipoLancamento='Exc' then
+                begin
+                  txt.Codigo:=  js['CODIGO'].Value;
+                  txt.Descricao_Aux:= js['DESCRICAO_AUX'].Value;
+                  txt.Quantidade:=js['QUANTIDADE'].Value;
+                  txt.Autorizador:= js['AUTORIZADOR'].Value;
+                end;
+
+                if txt.TipoLancamento='Transf' then
+                begin
+                  txt.Codigo:=  js['CODIGO'].Value;
+                  txt.Descricao_Aux:= js['DESCRICAO_AUX'].Value;
+                  txt.Quantidade:=js['QUANTIDADE'].Value;
+                  txt.Mesa_origem:= js['MESA_ORIGEM'].Value;
+                  txt.Autorizador:= js['AUTORIZADOR'].Value;
+                end;
+            end;
+          end;  
+       end;
+       lst.Insert(lst.Count,txt);
+
+      finally
+         //txt.Free
+       end;
+     CloseFile(arq);
+     IArq:=IArq+1;
+     I := FindNext(SR);
+  end;
+   lst.First;
+  for i := 0 to lst.Count - 1 do
+  begin
+   try
+    //  txt:= TLogMes.Create;
+      txt:= lst[i];
+      Memo1.Lines.Add(txt.Origem);
+
+   finally
+      // txt.Free;
+   end;
+  end;
+
+
+end;
+       
+function TForm3.verificaOrigem(linha: String): Boolean;
+var 
+lslinha: TStringList;
+rs:Boolean;
+i: integer;
+begin
+  rs:= false;
+  lslinha:= TStringList.Create;
+  try 
+    lslinha.Add('Inc');   
+    lslinha.Add('Desc');
+    lslinha.Add('Desb');
+    lslinha.Add('PNRPed');
+    lslinha.Add('PRNCta');
+    lslinha.Add('Exc');
+
+    for i := 0 to lslinha.Count - 1 do         
+    begin
+       if lslinha.Strings[i] = linha then
+       begin
+        rs:= true;   
+       end;
+       
+    end;
+  finally
+    lslinha.Free;
+  end;
+  Result:= rs;
+end;
+
+end.

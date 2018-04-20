@@ -1,0 +1,22 @@
+Caixa
+PNRPed
+Fila: BAR, \\10.0.4.151\BAR, BEMATECH, 1 via
+
+ </e>
+ </e>
+ </e>
+ </e>
+<e>>>           <<</e>
+    <e>HORARIO: 12:35    </e>
+  <e>*** MESA : 20  ***  </e>
+QT     DESCRICAO   
+<e>1 x COCA COLA</e>
+   <e>(COM GELO LIMAO)</e>
+{PRETO}-------------------------------------</e>
+       VENDEDOR: ALEXANDRO BARROS       </e>
+ </e>
+ </e>
+              PEDIDO: 117               </e>
+ </e>
+ </e>
+ </e>

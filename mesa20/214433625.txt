@@ -1,0 +1,25 @@
+Caixa
+PNRPed
+Fila: ACOMPANHAMENTO, \\10.0.4.151\BATATA, BEMATECH, 1 via
+
+ </e>
+ </e>
+ </e>
+ </e>
+<e>>>           <<</e>
+    <e>HORARIO: 21:44    </e>
+  <e>*** MESA : 20  ***  </e>
+QT     DESCRICAO   
+<e>3 x PAPATASSO RW</e>
+   <e>(COM CARNE)</e>
+{PRETO}-------------------------------------</e>
+<e>1 x ARROZ PARR RW</e>
+   <e>(COM CARNE)</e>
+{PRETO}-------------------------------------</e>
+        VENDEDOR: ADRIANO MATIAS        </e>
+ </e>
+ </e>
+              PEDIDO: 183               </e>
+ </e>
+ </e>
+ </e>

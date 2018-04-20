@@ -1,0 +1,29 @@
+Caixa
+PNRPed
+Fila: CHURRASQUEIRA, \\10.0.4.151\CHURRASCO, BEMATECH, 1 via
+
+ </e>
+ </e>
+ </e>
+ </e>
+<e>>>           <<</e>
+    <e>HORARIO: 21:44    </e>
+  <e>*** MESA : 20  ***  </e>
+QT     DESCRICAO   
+<e>1 x BIFE DE CHORIZO RW</e>
+   <e>(PONTO MAIS)</e>
+{PRETO}-------------------------------------</e>
+<e>2 x BIFE DE CHORIZO RW</e>
+   <e>(AO PONTO)</e>
+{PRETO}-------------------------------------</e>
+<e>1 x CORTE ESPEC RW</e>
+   <e>(AO PONTO)</e>
+   <e>(COM ACOMPANHAMENTO)</e>
+{PRETO}-------------------------------------</e>
+        VENDEDOR: ADRIANO MATIAS        </e>
+ </e>
+ </e>
+              PEDIDO: 183               </e>
+ </e>
+ </e>
+ </e>

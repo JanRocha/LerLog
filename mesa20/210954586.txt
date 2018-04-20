@@ -1,0 +1,23 @@
+Caixa
+PNRPed
+Fila: BAR, \\10.0.4.151\BAR, BEMATECH, 1 via
+
+ </e>
+ </e>
+ </e>
+ </e>
+<e>>>           <<</e>
+    <e>HORARIO: 21:10    </e>
+  <e>*** MESA : 20  ***  </e>
+QT     DESCRICAO   
+<e>1 x NORTENA 960ML</e>
+   <e>(4 COPOS)</e>
+   <e>(BALDE DE GELO)</e>
+{PRETO}-------------------------------------</e>
+        VENDEDOR: ADRIANO MATIAS        </e>
+ </e>
+ </e>
+              PEDIDO: 183               </e>
+ </e>
+ </e>
+ </e>

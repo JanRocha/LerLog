@@ -1,0 +1,25 @@
+Caixa
+PNRPed
+Fila: ACOMPANHAMENTO, \\10.0.4.151\BATATA, BEMATECH, 1 via
+
+ </e>
+ </e>
+ </e>
+ </e>
+<e>>>           <<</e>
+    <e>HORARIO: 12:53    </e>
+  <e>*** MESA : 20  ***  </e>
+QT     DESCRICAO   
+<e>1 x PAPATASSO PROVEN</e>
+   <e>(COM CARNE)</e>
+{PRETO}-------------------------------------</e>
+<e>1 x ARROZ PARRILLERO</e>
+   <e>(COM CARNE)</e>
+{PRETO}-------------------------------------</e>
+       VENDEDOR: ALEXANDRO BARROS       </e>
+ </e>
+ </e>
+              PEDIDO: 117               </e>
+ </e>
+ </e>
+ </e>

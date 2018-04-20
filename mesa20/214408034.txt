@@ -1,0 +1,22 @@
+Caixa
+PNRPed
+Fila: SALADA, \\10.0.4.151\SALADA, BEMATECH, 1 via
+
+ </e>
+ </e>
+ </e>
+ </e>
+<e>>>           <<</e>
+    <e>HORARIO: 21:44    </e>
+  <e>*** MESA : 20  ***  </e>
+QT     DESCRICAO   
+<e>1 x SAL JULIANA RW</e>
+   <e>(COM EMPANADA)</e>
+{PRETO}-------------------------------------</e>
+        VENDEDOR: ADRIANO MATIAS        </e>
+ </e>
+ </e>
+              PEDIDO: 183               </e>
+ </e>
+ </e>
+ </e>

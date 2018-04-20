@@ -1,0 +1,8 @@
+Caixa
+Desb
+
+{
+  "AUTORIZADOR":"30-RAIMUNDO DAVID",
+  "TEM_SPOOL":"NAO",
+  "AGRUPAMENTO_COM_SPOOL":"NAO"
+}

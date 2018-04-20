@@ -1,0 +1,25 @@
+Caixa
+PNRPed
+Fila: CHURRASQUEIRA, \\10.0.4.151\CHURRASCO, BEMATECH, 1 via
+
+ </e>
+ </e>
+ </e>
+ </e>
+<e>>>           <<</e>
+    <e>HORARIO: 12:54    </e>
+  <e>*** MESA : 20  ***  </e>
+QT     DESCRICAO   
+<e>2 x OJO DEL BIFE</e>
+   <e>(AO PONTO)</e>
+   <e>(FATIADO)</e>
+   <e>(COM ACOMPANHAMENTO)</e>
+   <e>(COM SALADA)</e>
+{PRETO}-------------------------------------</e>
+       VENDEDOR: ALEXANDRO BARROS       </e>
+ </e>
+ </e>
+              PEDIDO: 117               </e>
+ </e>
+ </e>
+ </e>
