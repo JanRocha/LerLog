@@ -1,7 +1,7 @@
 object Form3: TForm3
   Left = 0
   Top = 0
-  Caption = 'Analise da mesa'
+  Caption = 'Analise de mesa'
   ClientHeight = 331
   ClientWidth = 874
   Color = clBtnFace

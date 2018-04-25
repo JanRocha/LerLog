@@ -58,6 +58,7 @@ type
     procedure Button2Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     function verificaOrigem(linha:String): Boolean;
+    function FormatarHora(linha: String):string;
   private
   path :string;
   public
@@ -125,15 +126,13 @@ begin
             txt.Origem:= linha;
           if verificaOrigem(linha) then
              txt.TipoLancamento:= linha;
-          if txt.Origem ='PNRPed' then
+          if txt.TipoLancamento ='PNRPed' then
           begin
-            txt.PRN:= txt.PRN + linha;
-            exit;
+            txt.PRN:= txt.PRN + linha + #13#10;
           end;
           if txt.Origem = 'PRNCta' then
           begin
-           txt.Conta:= txt.Conta + linha;
-           exit;
+           txt.Conta:= txt.Conta + linha+ #13#10;
           end;
           if  jsTag= false then
           begin
@@ -210,25 +209,103 @@ begin
      IArq:=IArq+1;
      I := FindNext(SR);
   end;
-   lst.First;
+  lst.First;
   for i := 0 to lst.Count - 1 do
   begin
       txt:= lst[i];
-      Memo1.Lines.Add('NOME DO ARQUIVO : ' + txt.NomeArquivo);
-      Memo1.Lines.Add('ORIGEM          : ' + txt.Origem);
-      Memo1.Lines.Add('TIPO_LANCAMENTO : ' + txt.TipoLancamento);
-      Memo1.Lines.Add('',);
-      Memo1.Lines.Add('',);
-      Memo1.Lines.Add('',);
-      Memo1.Lines.Add('',);
-      Memo1.Lines.Add('',);
+      if txt.TipoLancamento='Inc' then
+      begin
+        Memo1.Lines.Add('----------------------------------------------------------------');
+        Memo1.Lines.Add('HORA PROCESSAMENTO.....: ' + FormatarHora(TXT.NomeArquivo));
+        Memo1.Lines.Add('NOME DO ARQUIVO........: ' + txt.NomeArquivo);
+        Memo1.Lines.Add('ORIGEM.................: ' + txt.Origem);
+        Memo1.Lines.Add('TIPO_LANCAMENTO........: ' + txt.TipoLancamento);
+        Memo1.Lines.Add('CODIGO.................: ' + intTostr(txt.Codigo));
+        Memo1.Lines.Add('DESCRICAO_AUX..........: ' + txt.Descricao_Aux);
+        Memo1.Lines.Add('QUANTIDADE.............: ' + intTostr(txt.Quantidade));
+        Memo1.Lines.Add('VENDEDOR...............: ' + txt.Vendedor);
+        Memo1.Lines.Add('LANCAMENTO.............: ' + txt.Lancamento);
 
+      end;
+      if txt.TipoLancamento='Desc' then
+      begin
+        Memo1.Lines.Add('----------------------------------------------------------------');
+        Memo1.Lines.Add('HORA PROCESSAMENTO.....: ' + FormatarHora(TXT.NomeArquivo));
+        Memo1.Lines.Add('NOME DO ARQUIVO........: ' + txt.NomeArquivo);
+        Memo1.Lines.Add('ORIGEM.................: ' + txt.Origem);
+        Memo1.Lines.Add('TIPO_LANCAMENTO........: ' + txt.TipoLancamento);
+        Memo1.Lines.Add('CODIGO.................: ' + intTostr(txt.Codigo));
+        Memo1.Lines.Add('DESCRICAO_AUX..........: ' + txt.Descricao_Aux);
+        Memo1.Lines.Add('QUANTIDADE.............: ' + intTostr(txt.Quantidade));
+        Memo1.Lines.Add('TIPO...................: ' + txt.Tipo);
+        Memo1.Lines.Add('VALOR..................: ' + txt.Valor);
+      end;
+      if txt.TipoLancamento='Desb' then
+      begin
+        Memo1.Lines.Add('----------------------------------------------------------------');
+        Memo1.Lines.Add('HORA PROCESSAMENTO.....: ' + FormatarHora(TXT.NomeArquivo));
+        Memo1.Lines.Add('NOME DO ARQUIVO........: ' + txt.NomeArquivo);
+        Memo1.Lines.Add('ORIGEM.................: ' + txt.Origem);
+        Memo1.Lines.Add('TIPO_LANCAMENTO........: ' + txt.TipoLancamento);
+        Memo1.Lines.Add('CODIGO.................: ' + intTostr(txt.Codigo));
+        Memo1.Lines.Add('AUTORIZADOR............: ' + txt.Autorizador);
+        Memo1.Lines.Add('TEM_SPOOL..............: ' + txt.Tem_Spool);
+        Memo1.Lines.Add('AGRUPAMENTO_COM_SPOOL..: ' + txt.Agrupamento);
+      end;
+      if txt.TipoLancamento='Exc' then
+      begin
+        Memo1.Lines.Add('----------------------------------------------------------------');
+        Memo1.Lines.Add('HORA PROCESSAMENTO.....: ' + FormatarHora(TXT.NomeArquivo));
+        Memo1.Lines.Add('NOME DO ARQUIVO........: ' + txt.NomeArquivo);
+        Memo1.Lines.Add('ORIGEM.................: ' + txt.Origem);
+        Memo1.Lines.Add('TIPO_LANCAMENTO........: ' + txt.TipoLancamento);
+        Memo1.Lines.Add('CODIGO.................: ' + intTostr(txt.Codigo));
+        Memo1.Lines.Add('AUTORIZADOR............: ' + txt.Autorizador);
+      end;
+      if txt.TipoLancamento='Transf' then
+      begin
+        Memo1.Lines.Add('----------------------------------------------------------------');
+        Memo1.Lines.Add('HORA PROCESSAMENTO.....: ' + FormatarHora(TXT.NomeArquivo));
+        Memo1.Lines.Add('NOME DO ARQUIVO........: ' + txt.NomeArquivo);
+        Memo1.Lines.Add('ORIGEM.................: ' + txt.Origem);
+        Memo1.Lines.Add('TIPO_LANCAMENTO........: ' + txt.TipoLancamento);
+        Memo1.Lines.Add('CODIGO.................: ' + intTostr(txt.Codigo));
+        Memo1.Lines.Add('QUANTIDADE.............: ' + intTostr(txt.Quantidade));
+        Memo1.Lines.Add('MESA_ORIGEM............: ' + txt.Mesa_origem);
+        Memo1.Lines.Add('AUTORIZADOR............: ' + txt.Autorizador);
+      end;
+     if txt.TipoLancamento='PNRPed' then
+     BEGIN
+        Memo1.Lines.Add('----------------------------------------------------------------');
+        Memo1.Lines.Add('HORA PROCESSAMENTO.....: ' + FormatarHora(TXT.NomeArquivo));
+        Memo1.Lines.Add('NOME DO ARQUIVO........: ' + txt.NomeArquivo);
+        Memo1.Lines.Add('ORIGEM.................: ' + txt.Origem);
+        Memo1.Lines.Add('TIPO_LANCAMENTO........: ' + txt.TipoLancamento);
+        Memo1.Lines.Add('PEDIDO IMPRESSO........: ' + txt.PRN);
+     END;
+
+     if txt.TipoLancamento='PRNCta' then
+     begin
+        Memo1.Lines.Add('----------------------------------------------------------------');
+        Memo1.Lines.Add('HORA PROCESSAMENTO.....: ' + FormatarHora(TXT.NomeArquivo));
+        Memo1.Lines.Add('NOME DO ARQUIVO........: ' + txt.NomeArquivo);
+        Memo1.Lines.Add('ORIGEM.................: ' + txt.Origem);
+        Memo1.Lines.Add('TIPO_LANCAMENTO........: ' + txt.TipoLancamento);
+        Memo1.Lines.Add('CONTA..................: ' + txt.Conta);
+     end;
 
   end;
-
-
 end;
-       
+
+function TForm3.FormatarHora(linha: String): string;
+var s,h,m:string;
+begin
+  h:= copy(linha,0,2);
+  m:= copy(linha,2,2);
+  s:= copy(linha,4,2);
+  Result:= h+':'+m+':'+s;
+end;
+
 function TForm3.verificaOrigem(linha: String): Boolean;
 var 
 lslinha: TStringList;
